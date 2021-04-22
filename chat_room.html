@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Web Chat</title>
+    <style>
+        div{
+            height: 500px;
+            width: 500px;
+            overflow: scroll;
+        }
+    </style>
+</head>
+<body>
+    <div class="msg">
+
+    </div>
+    <h1>Welcome</h1>
+    <textarea  name="usrMsg" id="message" ></textarea>
+        <button class='send' onclick="ws.onopen()">Send</button>
+</body>
+</html>
