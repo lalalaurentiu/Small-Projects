@@ -1,0 +1,58 @@
+{% extends 'shop/base.html' %}
+
+{% block title %} 
+    Category
+{% endblock %}
+
+{% block content %}
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" >
+        <div class="carousel-indicators">
+            {% for obj in categories %}
+                {% if forloop.first %}
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0}}" class="active" aria-current="true" aria-label="Slide 1"></button>
+                {% else %}
+                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0}}"></button>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="carousel-inner w-100 p-3">
+            
+            {% for obj in categories %}
+                {% if forloop.first%}
+                    <div class="carousel-item active  ">
+                {% else %}
+                    <div class="carousel-item  ">
+                {% endif%} 
+                        <img src="{{ obj.image.url }}" class="d-block w-100" width="640" height="480">
+                    </div>
+                    
+            {% endfor%}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="d-flex justify-content-evenly"></div>
+            <div class="row">
+                {% for obj in categories %}
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ obj.title }}</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <a class="btn btn-outline-secondary" href="{{ obj.slug }}">{{ obj.title }}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock  %}

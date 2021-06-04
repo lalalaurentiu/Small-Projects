@@ -1,0 +1,31 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+
+{% block content %}
+    <h1 class="text-center"> Checkout </h1>
+
+    <div class="grid-x grid-margin-x">
+    <div class="medium-1 cell">
+    </div>
+    <div class="medium-5 cell">
+        <form action="." method="post" class="order-form" id="formcheckout">
+        {{ form.as_p}}
+        <button class="button large expanded" type="submit" form="formcheckout" value="Submit">Buy Now</button>
+        {% csrf_token %}
+    </form>
+    </div>
+    <div class="medium-6 large-5 cell">
+         <h3>Your command</h3>
+        <ul>
+            {% for item in cart %}
+                <li>{{ item.quantity }}x {{ item.product.name }} <span>${{ item.total_price }}</span></li>
+            {% endfor %}
+        </ul>
+        <p>Total: EUR {{ cart.get_total_price }}</p>
+    </div>
+    </div>
+
+   
+    
+{% endblock %}

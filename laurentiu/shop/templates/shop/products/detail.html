@@ -1,0 +1,32 @@
+{%  extends 'shop/base.html'%}
+{% load static %}
+
+{% block title %}
+    {{ product.name}}
+{% endblock %}
+
+{% block content %} 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <img src="{% if product.image%}
+                            {{ product.image.url}}
+                        {% else %}
+                            {% static 'img/no_image.png'%}
+                        {% endif %}" width="600" height="480">
+        </div>
+        <div class="col-sm-6"> 
+            <p> {{ product.description | linebreaks }} </p>
+        </div>
+        <div class="text-center">
+        <form action="{% url "cart:cart_add" product.id %}" method='post'>
+            {{ cart_product_form }}
+            {% csrf_token %}
+            <input type='submit' value='Add to cart'>
+        </form>
+    </div>
+        
+        
+    </div>
+</div>
+{% endblock %}

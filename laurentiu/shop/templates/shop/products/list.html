@@ -1,0 +1,28 @@
+{%  extends 'shop/base.html'%}
+{% load static %}
+
+{% block title %}
+    {{ category }}
+{% endblock %}
+
+{% block content%}
+    {% for product in products%}  
+        <div class="card mb-3" style="max-width: 200vh">
+            <div class="row g-0">
+                <div class="col-md-2">
+                        <img src="{{ product.image.url }}" width="200vh">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                    <div class="text-center">
+                        <a href="{{ product.get_absolute_url }}" class="btn btn-outline-secondary">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    {% endfor %}
+{% endblock %}
